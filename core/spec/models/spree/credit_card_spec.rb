@@ -87,6 +87,7 @@ RSpec.describe Spree::CreditCard, type: :model do
       credit_card.save!
     end
 
+    let!(:country) { create(:country) }
     let!(:persisted_card) { Spree::CreditCard.find(credit_card.id) }
     let(:valid_address_attributes) do
       {
@@ -94,7 +95,7 @@ RSpec.describe Spree::CreditCard, type: :model do
         lastname: "Furst",
         address1: "123 Main",
         city: "Somewhere",
-        country_id: 1,
+        country_id: country.id,
         zipcode: 55_555,
         phone: "1234567890"
       }
