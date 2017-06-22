@@ -26,7 +26,7 @@ module Spree
         order = create(:order_with_line_items)
         # Order should be in a pristine state
         # Without doing this, the order may transition from 'cart' straight to 'delivery'
-        order.shipments.delete_all
+        order.shipments.destroy_all
         order
       end
 
@@ -375,7 +375,7 @@ module Spree
     context "PUT 'next'" do
       let!(:order) { create(:order_with_line_items) }
       it "cannot transition to address without a line item" do
-        order.line_items.delete_all
+        order.line_items.destroy_all
         order.update_column(:email, "spree@example.com")
         put spree.next_api_checkout_path(order), params: { order_token: order.guest_token }
         expect(response.status).to eq(422)

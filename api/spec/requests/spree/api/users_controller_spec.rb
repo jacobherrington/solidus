@@ -44,7 +44,8 @@ module Spree
 
       it "can update own details" do
         country = create(:country)
-        put spree.api_user_path(user.id), params: { token: user.spree_api_key, user: {
+        state = create(:state, country: country)
+        api_put :update, id: user.id, token: user.spree_api_key, user: {
           email: "mine@example.com",
           bill_address_attributes: {
             first_name: 'First',
@@ -52,7 +53,7 @@ module Spree
             address1: '1 Test Rd',
             city: 'City',
             country_id: country.id,
-            state_id: 1,
+            state_id: state.id,
             zipcode: '55555',
             phone: '5555555555'
           },
@@ -62,7 +63,7 @@ module Spree
             address1: '1 Test Rd',
             city: 'City',
             country_id: country.id,
-            state_id: 1,
+            state_id: state.id,
             zipcode: '55555',
             phone: '5555555555'
           }
@@ -107,10 +108,17 @@ module Spree
 
         2.times { create(:user) }
 
+<<<<<<< HEAD:api/spec/requests/spree/api/users_controller_spec.rb
         get spree.api_users_path
         expect(Spree.user_class.count).to eq 2
         expect(json_response['count']).to eq 2
         expect(json_response['users'].size).to eq 2
+=======
+        api_get :index
+        expect(Spree.user_class.count).to eq 3
+        expect(json_response['count']).to eq 3
+        expect(json_response['users'].size).to eq 3
+>>>>>>> Update API specs to support foreign keys:api/spec/controllers/spree/api/users_controller_spec.rb
       end
 
       it 'can control the page size through a parameter' do
@@ -118,7 +126,7 @@ module Spree
         get spree.api_users_path, params: { per_page: 1 }
         expect(json_response['count']).to eq(1)
         expect(json_response['current_page']).to eq(1)
-        expect(json_response['pages']).to eq(2)
+        expect(json_response['pages']).to eq(3)
       end
 
       it 'can query the results through a paramter' do
