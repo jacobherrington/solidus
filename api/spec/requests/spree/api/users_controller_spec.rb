@@ -67,7 +67,7 @@ module Spree
             zipcode: '55555',
             phone: '5555555555'
           }
-        } }
+        }
         expect(json_response['email']).to eq 'mine@example.com'
         expect(json_response['bill_address']).to_not be_nil
         expect(json_response['ship_address']).to_not be_nil
@@ -108,17 +108,10 @@ module Spree
 
         2.times { create(:user) }
 
-<<<<<<< HEAD:api/spec/requests/spree/api/users_controller_spec.rb
-        get spree.api_users_path
-        expect(Spree.user_class.count).to eq 2
-        expect(json_response['count']).to eq 2
-        expect(json_response['users'].size).to eq 2
-=======
         api_get :index
         expect(Spree.user_class.count).to eq 3
         expect(json_response['count']).to eq 3
         expect(json_response['users'].size).to eq 3
->>>>>>> Update API specs to support foreign keys:api/spec/controllers/spree/api/users_controller_spec.rb
       end
 
       it 'can control the page size through a parameter' do
