@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddForeignKeys < ActiveRecord::Migration[5.1]
   def change
     add_foreign_key :spree_addresses, :spree_countries, column: :country_id
@@ -49,8 +51,8 @@ class AddForeignKeys < ActiveRecord::Migration[5.1]
     add_foreign_key :spree_product_option_types, :spree_products, column: :product_id
     add_foreign_key :spree_product_option_types, :spree_option_types, column: :option_type_id
 
-    #add_foreign_key :spree_product_promotion_rules, :spree_products, column: :product_id
-    #add_foreign_key :spree_product_promotion_rules, :spree_promotion_rules, column: :promotion_rule_id
+    # add_foreign_key :spree_product_promotion_rules, :spree_products, column: :product_id
+    # add_foreign_key :spree_product_promotion_rules, :spree_promotion_rules, column: :promotion_rule_id
 
     add_foreign_key :spree_product_properties, :spree_products, column: :product_id
     add_foreign_key :spree_product_properties, :spree_properties, column: :property_id
@@ -66,13 +68,13 @@ class AddForeignKeys < ActiveRecord::Migration[5.1]
 
     add_foreign_key :spree_promotion_actions, :spree_promotions, column: :promotion_id
 
-    #add_foreign_key :spree_promotion_code_batches, :spree_promotions, column: :promotion_id
+    # add_foreign_key :spree_promotion_code_batches, :spree_promotions, column: :promotion_id
 
     add_foreign_key :spree_promotion_codes, :spree_promotions, column: :promotion_id
-    #add_foreign_key :spree_promotion_codes, :spree_promotion_code_batches, column: :promotion_code_batch_id
+    # add_foreign_key :spree_promotion_codes, :spree_promotion_code_batches, column: :promotion_code_batch_id
 
-    #add_foreign_key :spree_promotion_rule_taxons, :spree_taxons, column: :taxon_id
-    #add_foreign_key :spree_promotion_rule_taxons, :spree_promotion_rules, column: :promotion_rule_id
+    # add_foreign_key :spree_promotion_rule_taxons, :spree_taxons, column: :taxon_id
+    # add_foreign_key :spree_promotion_rule_taxons, :spree_promotion_rules, column: :promotion_rule_id
 
     add_foreign_key :spree_promotion_rules, :spree_promotions, column: :promotion_id
 
@@ -148,8 +150,8 @@ class AddForeignKeys < ActiveRecord::Migration[5.1]
     add_foreign_key :spree_store_payment_methods, :spree_stores, column: :store_id
     add_foreign_key :spree_store_payment_methods, :spree_payment_methods, column: :payment_method_id
 
-    #add_foreign_key :spree_tax_rate_tax_categories, :spree_tax_categories, column: :tax_category_id
-    #add_foreign_key :spree_tax_rate_tax_categories, :spree_tax_rates, column: :tax_rate_id
+    # add_foreign_key :spree_tax_rate_tax_categories, :spree_tax_categories, column: :tax_category_id
+    # add_foreign_key :spree_tax_rate_tax_categories, :spree_tax_rates, column: :tax_rate_id
 
     add_foreign_key :spree_tax_rates, :spree_zones, column: :zone_id
 
@@ -170,7 +172,7 @@ class AddForeignKeys < ActiveRecord::Migration[5.1]
     add_foreign_key :spree_variants, :spree_products, column: :product_id
     add_foreign_key :spree_variants, :spree_tax_categories, column: :tax_category_id
 
-    #add_foreign_key :spree_wallet_payment_sources, :spree_users, column: :user_id
+    # add_foreign_key :spree_wallet_payment_sources, :spree_users, column: :user_id
 
     add_foreign_key :spree_zone_members, :spree_zones, column: :zone_id
   end
