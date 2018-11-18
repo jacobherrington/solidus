@@ -2,6 +2,58 @@ $padding-x-navbar: 26px;
 $padding-y-navbar: 13px;
 $padding-y-navbar-submenu: 9px;
 
+#admin-nav-toggle {
+  display: flex;
+  justify-content: center;
+  margin: 0.5em;
+  background-color: $color-1;
+  cursor: pointer;
+
+  .collapse-text {
+    margin: 0.25em 0 0 0.5em;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  i {
+    transform: rotate(0);
+    transition: transform $sidebar-transition;
+  }
+}
+
+.admin-nav-hidden {
+  padding-left: $width-sidebar-collapsed;
+
+  .admin-nav,
+  .admin-nav-footer {
+    width: $width-sidebar-collapsed;
+  }
+
+  .tab-with-icon .text,
+  .brand-link {
+    display: none;
+  }
+
+  .selected:not(:hover) .admin-subnav {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .admin-nav-menu .selected li {
+    padding-left: 0;
+  }
+
+  #admin-nav-toggle {
+    .collapse-text {
+      display: none;
+    }
+
+    i {
+      transform: rotate(180deg);
+    }
+  }
+}
+
 nav.menu {
   ul {
     list-style: none;
@@ -26,15 +78,26 @@ nav.menu {
 }
 
 .admin-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-sticky;
+  width: $width-sidebar;
   border-right: $border-sidebar;
   background: $color-sidebar-bg;
-  z-index: $zindex-sticky;
+  transition: width $sidebar-transition;
+
+  @media print {
+    display: none
+  }
 }
 
 .admin-nav-header {
+  height: $main-header-height;
   background-color: $color-1;
   border-bottom: 1px solid $color-border;
-  text-align: center;
+  padding: 0 2em 0 1em;
   // Using line height for proper vertical centering.
   // As line height does not take the border width into account we need to subtract it.
   line-height: $main-header-height - 1px;
@@ -71,10 +134,12 @@ nav.menu {
     }
 
     &:not(.selected):not(:hover) > ul {
-      display: none;
+      visibility: hidden;
+      opacity: 0;
     }
 
-    &:not(.selected) {
+    &:not(.selected),
+    .admin-nav-hidden & {
       position: relative;
 
       // flyout nav
@@ -99,6 +164,7 @@ nav.menu {
 
   a {
     display: block;
+    min-height: 39px;
     padding: $padding-y-navbar $padding-x-navbar;
     color: $color-navbar;
     font-weight: normal;
@@ -125,6 +191,8 @@ nav.menu {
     background: $color-navbar-submenu-bg;
     padding-top:    $padding-y-navbar - $padding-y-navbar-submenu;
     padding-bottom: $padding-y-navbar - $padding-y-navbar-submenu;
+    opacity: 1;
+    transition: opacity $sidebar-transition;
 
     li {
       background: $color-navbar-submenu-bg;
@@ -149,7 +217,11 @@ nav.menu {
 }
 
 .admin-nav-footer {
+  width: $width-sidebar;
   background-color: $color-navbar-footer-bg;
+  border-top: $border-sidebar;
+  border-right: $border-sidebar;
+  transition: width $sidebar-transition;
 
   a {
     color: $color-navbar-footer;
@@ -167,9 +239,6 @@ nav.menu {
 .admin-nav.fits .admin-nav-footer {
   position: fixed;
   bottom: 0;
-  width: $width-sidebar;
-  border-top: $border-sidebar;
-  border-right: $border-sidebar;
 }
 
 .admin-login-nav {

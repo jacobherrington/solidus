@@ -1,9 +1,14 @@
 <div class="admin-nav">
   <%= render partial: 'spree/admin/shared/navigation_header' %>
-  <span id="admin-nav-toggle"><i class="fa fa-angle-double-left fa-3x"></i></span>
   <div class="admin-nav-sticky">
     <%= render partial: 'spree/admin/shared/menu' %>
     <div class="admin-nav-footer">
+      <div id="admin-nav-toggle">
+        <i class="fa fa-angle-double-left fa-2x"></i>
+        <span class="collapse-text">
+          Collapse Sidebar
+        </span>
+      </div>
       <%= render partial: 'spree/admin/shared/locale_selection' %>
       <%= render partial: 'spree/admin/shared/navigation_footer' %>
     </div>
