@@ -70,7 +70,7 @@ Spree::Core::Engine.routes.draw do
         put :apply_coupon_code
       end
 
-      resources :coupon_codes, only: :create
+      resources :coupon_codes, only: [:create, :destroy]
     end
 
     resources :zones
